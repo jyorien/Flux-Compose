@@ -9,7 +9,9 @@ import androidx.compose.ui.unit.sp
 import com.example.flux_compose.R
 
 val fonts = FontFamily(
-    Font(R.font.worksans_regular)
+    Font(R.font.worksans_regular),
+    Font(R.font.worksans_bold, weight = FontWeight.Bold),
+    Font(R.font.worksans_semibold, weight = FontWeight.W500),
 )
 // Set of Material typography styles to start with
 val Typography = Typography(
