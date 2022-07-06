@@ -55,7 +55,6 @@ fun HomeScreen() {
             )
         })
     )
-    Scaffold {
         Column(modifier = Modifier.padding(horizontal = 24.dp)) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -121,7 +120,7 @@ fun HomeScreen() {
             })
 
         }
-    }
+
 }
 
 @Composable

@@ -1,5 +1,7 @@
 package com.example.flux_compose.main
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -12,11 +14,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.flux_compose.main.add.ADD_SCREEN
+import com.example.flux_compose.main.add.AddScreen
 import com.example.flux_compose.main.bottom_nav.*
 import com.example.flux_compose.main.home.HOME_SCREEN
 import com.example.flux_compose.main.home.HomeScreen
 
 const val MAIN_SCREEN = "main_screen"
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
@@ -40,7 +45,7 @@ fun MainScreen() {
         NavHost(navController = navController, startDestination = HOME_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
             composable(HOME_SCREEN) { HomeScreen() }
             composable(STATS_SCREEN) { HomeScreen() }
-            composable(ADD_SCREEN) { HomeScreen() }
+            composable(ADD_SCREEN) { AddScreen() }
             composable(NEWS_SCREEN) { HomeScreen() }
             composable(SETTINGS_SCREEN) { HomeScreen() }
         }

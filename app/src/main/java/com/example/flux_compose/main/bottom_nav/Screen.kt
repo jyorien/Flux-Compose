@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.example.flux_compose.main.add.ADD_SCREEN
 import com.example.flux_compose.main.home.HOME_SCREEN
 
 sealed class Screen(val route: String, val title: String, val icon: @Composable () -> Unit) {
@@ -47,6 +48,5 @@ sealed class Screen(val route: String, val title: String, val icon: @Composable 
 }
 
 const val STATS_SCREEN = "STATS_SCREEN"
-const val ADD_SCREEN = "ADD_SCREEN"
 const val NEWS_SCREEN = "NEWS_SCREEN"
 const val SETTINGS_SCREEN = "SETTINGS_SCREEN"
