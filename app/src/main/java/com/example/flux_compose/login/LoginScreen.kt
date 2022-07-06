@@ -4,19 +4,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -27,7 +21,8 @@ import androidx.navigation.NavController
 import com.example.flux_compose.R
 import com.example.flux_compose.composables.FullWidthButton
 import com.example.flux_compose.composables.FullWidthTextField
-import com.example.flux_compose.home.HOME_SCREEN
+import com.example.flux_compose.main.MAIN_SCREEN
+import com.example.flux_compose.main.home.HOME_SCREEN
 
 const val LOGIN_SCREEN = "login_screen"
 
@@ -77,7 +72,7 @@ fun LoginScreen(navController: NavController) {
                 keyboardType = KeyboardType.Password
             )
             Box(modifier = Modifier.height(20.dp))
-            FullWidthButton(onClick = { navController.navigate(HOME_SCREEN) }) {
+            FullWidthButton(onClick = { navController.navigate(MAIN_SCREEN) }) {
                 Row {
                     Text("Sign In")
                     Icon(

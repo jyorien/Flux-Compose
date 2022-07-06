@@ -6,10 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.flux_compose.home.HOME_SCREEN
-import com.example.flux_compose.home.HomeScreen
 import com.example.flux_compose.login.LOGIN_SCREEN
 import com.example.flux_compose.login.LoginScreen
+import com.example.flux_compose.main.MAIN_SCREEN
+import com.example.flux_compose.main.MainScreen
 import com.example.flux_compose.onboarding.ONBOARDING_SCREEN
 import com.example.flux_compose.onboarding.OnboardingScreen
 import com.example.flux_compose.ui.theme.FluxComposeTheme
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = ONBOARDING_SCREEN) {
                     composable(ONBOARDING_SCREEN) { OnboardingScreen(navController) }
                     composable(LOGIN_SCREEN) { LoginScreen(navController) }
-                    composable(HOME_SCREEN) { HomeScreen(navController) }
+                    composable(MAIN_SCREEN) { MainScreen() }
                 }
             }
         }

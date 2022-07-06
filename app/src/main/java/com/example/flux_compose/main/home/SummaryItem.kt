@@ -1,4 +1,4 @@
-package com.example.flux_compose.home
+package com.example.flux_compose.main.home
 
 data class SummaryItem(
     val index: Int,
