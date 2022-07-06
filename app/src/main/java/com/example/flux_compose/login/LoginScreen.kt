@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import com.example.flux_compose.R
 import com.example.flux_compose.composables.FullWidthButton
 import com.example.flux_compose.composables.FullWidthTextField
+import com.example.flux_compose.home.HOME_SCREEN
 
 const val LOGIN_SCREEN = "login_screen"
 
@@ -76,7 +77,7 @@ fun LoginScreen(navController: NavController) {
                 keyboardType = KeyboardType.Password
             )
             Box(modifier = Modifier.height(20.dp))
-            FullWidthButton(onClick = { /*TODO: Sign in Button*/ }) {
+            FullWidthButton(onClick = { navController.navigate(HOME_SCREEN) }) {
                 Row {
                     Text("Sign In")
                     Icon(
