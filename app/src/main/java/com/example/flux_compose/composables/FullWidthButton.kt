@@ -15,11 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun FullWidthButton(content: @Composable () -> Unit) {
-    Button(onClick = {}, modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp), shape = RoundedCornerShape(25)) {
+fun FullWidthButton(onClick: () -> Unit, content: @Composable () -> Unit) {
+    Button(onClick = { onClick() }, modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp), shape = RoundedCornerShape(25)) {
         Box(modifier = Modifier.padding(vertical = 12.dp)) {
             content()
-
         }
     }
 }

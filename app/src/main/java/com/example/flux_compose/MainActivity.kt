@@ -13,6 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.flux_compose.login.LOGIN_SCREEN
+import com.example.flux_compose.login.LoginScreen
 import com.example.flux_compose.onboarding.ONBOARDING_SCREEN
 import com.example.flux_compose.onboarding.OnboardingScreen
 import com.example.flux_compose.ui.theme.FluxComposeTheme
@@ -24,7 +26,8 @@ class MainActivity : ComponentActivity() {
             FluxComposeTheme {
                 val navControler = rememberNavController()
                 NavHost(navController =navControler , startDestination = ONBOARDING_SCREEN ) {
-                    composable(ONBOARDING_SCREEN) { OnboardingScreen() }
+                    composable(ONBOARDING_SCREEN) { OnboardingScreen(navControler) }
+                    composable(LOGIN_SCREEN) { LoginScreen(navControler) }
                 }
             }
         }
