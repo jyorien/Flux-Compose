@@ -33,7 +33,7 @@ fun LoginScreen(navController: NavController) {
     Scaffold {
         // Curved grey area on top
 
-        Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             CurvedGreyBackground()
             Text("Flux", fontWeight = FontWeight.Bold, fontSize = 36.sp)
             Box(modifier = Modifier.height(30.dp))

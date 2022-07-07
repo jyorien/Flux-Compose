@@ -17,8 +17,7 @@ fun FullWidthButton(onClick: () -> Unit, color: Color = MaterialTheme.colors.pri
     Button(
         onClick = { onClick() },
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(25),
         colors = ButtonDefaults.buttonColors(backgroundColor = color)
     ) {

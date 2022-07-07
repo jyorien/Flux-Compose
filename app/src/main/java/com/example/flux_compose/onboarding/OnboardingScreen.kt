@@ -77,16 +77,18 @@ fun OnboardingScreen(navController: NavController) {
                 }
                 if (pageIndex.value == 2) {
                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxHeight()) {
-                        FullWidthButton(onClick = {
-                            navController.navigate(LOGIN_SCREEN)
-                        }) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Text("Get Started")
-                                Icon(
-                                    painterResource(id = R.drawable.ic_baseline_keyboard_arrow_right_24),
-                                    "Continue Button",
-                                    Modifier.size(20.dp)
-                                )
+                        Box(Modifier.padding(horizontal = 20.dp)) {
+                            FullWidthButton(onClick = {
+                                navController.navigate(LOGIN_SCREEN)
+                            }) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text("Get Started")
+                                    Icon(
+                                        painterResource(id = R.drawable.ic_baseline_keyboard_arrow_right_24),
+                                        "Continue Button",
+                                        Modifier.size(20.dp)
+                                    )
+                                }
                             }
                         }
                     }
