@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -41,14 +42,15 @@ fun MainScreen() {
             }
         }
     }) {
+        val viewModel: MainViewModel = viewModel()
         NavHost(navController = navController, startDestination = ADD_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
             composable(HOME_SCREEN) { HomeScreen() }
             composable(STATS_SCREEN) { HomeScreen() }
             composable(ADD_SCREEN) { AddScreen(navController) }
             composable(NEWS_SCREEN) { HomeScreen() }
             composable(SETTINGS_SCREEN) { HomeScreen() }
-            composable(ADD_INCOME_SCREEN) { AddItemScreen() }
-            composable(ADD_EXPENSE_SCREEN) { AddItemScreen() }
+            composable(ADD_INCOME_SCREEN) { AddItemScreen(viewModel, navController) }
+            composable(ADD_EXPENSE_SCREEN) { AddItemScreen(viewModel, navController) }
         }
     }
 }
