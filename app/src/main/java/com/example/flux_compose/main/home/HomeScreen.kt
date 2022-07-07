@@ -4,12 +4,10 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -25,10 +23,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.flux_compose.R
+import com.example.flux_compose.composables.EntryListItem
 import com.example.flux_compose.main.Entry
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 
 const val HOME_SCREEN = "home_screen"
@@ -115,7 +112,7 @@ fun HomeScreen() {
             Box(Modifier.height(15.dp))
             LazyColumn(content = {
                 items(entriesList.size) {
-                    LatestEntry(entry = entriesList[it])
+                    EntryListItem(entry = entriesList[it])
                 }
             })
 
@@ -170,34 +167,6 @@ fun ActionButtonItem(actionItem: ActionItem, isEven: Boolean) {
                 actionItem.icon()
             }
             Text(actionItem.label, fontWeight = FontWeight.Black)
-        }
-    }
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-fun LatestEntry(entry: Entry) {
-    val date = entry.date
-    Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
-        Row {
-            Column(
-                modifier = Modifier
-                    .size(48.dp)
-                    .clip(RoundedCornerShape(20))
-                    .background(color = MaterialTheme.colors.secondary)
-            ) {
-                entry.icon()
-            }
-            Box(modifier = Modifier.width(15.dp))
-            Column {
-                Text(entry.name, fontWeight = FontWeight.Black)
-                Text("${date.dayOfMonth} ${date.month.toString().slice(0..2)} ${date.year}")
-            }
-
-        }
-        Column(horizontalAlignment = Alignment.End) {
-            Text(entry.price, fontWeight = FontWeight.Black)
-            Text(entry.paymentMethod)
         }
     }
 }
