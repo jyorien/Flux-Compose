@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.flux_compose.R
+import com.example.flux_compose.composables.CustomAppBar
 import com.example.flux_compose.composables.EntryListItem
 import com.example.flux_compose.main.Entry
 import java.time.LocalDate
@@ -53,22 +54,7 @@ fun HomeScreen() {
         })
     )
         Column(modifier = Modifier.padding(horizontal = 24.dp)) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 28.dp)
-            ) {
-                Icon(painterResource(id = R.drawable.ic_baseline_menu_24), "Menu Button")
-                Box(
-                    modifier = Modifier
-                        .clip(RectangleShape)
-                        .size(42.dp)
-                ) {
-                    Image(painter = painterResource(id = R.drawable.dummy), contentDescription = "Profile Picture")
-                }
-            }
+            CustomAppBar()
             Text("Overview", fontWeight = FontWeight.Bold, fontSize = 24.sp)
             Box(modifier = Modifier.height(15.dp))
             LazyRow(content = {
