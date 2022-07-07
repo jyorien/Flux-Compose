@@ -1,6 +1,7 @@
 package com.example.flux_compose.composables
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -24,7 +25,8 @@ fun CustomAppBar(
             painter = painterResource(id = R.drawable.dummy),
             contentDescription = "Profile Picture"
         )
-    }
+    },
+    onMenuItemClick: () -> Unit = {}
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -33,7 +35,7 @@ fun CustomAppBar(
             .fillMaxWidth()
             .padding(vertical = 28.dp)
     ) {
-        Icon(painterResource(id = menuIcon), "Menu Button")
+        Icon(painterResource(id = menuIcon), "Menu Button", modifier = Modifier.clickable { onMenuItemClick() })
         Text(screenName, fontSize = 20.sp, fontWeight = FontWeight.W500)
         Box(
             modifier = Modifier

@@ -68,7 +68,10 @@ fun AddScreen(navController: NavController) {
 
         )
     Column(modifier = Modifier.padding(horizontal = 24.dp)) {
-        CustomAppBar(screenName = "Add", menuIcon = R.drawable.ic_baseline_keyboard_backspace_24)
+        CustomAppBar(
+            screenName = "Add",
+            menuIcon = R.drawable.ic_baseline_keyboard_backspace_24,
+            onMenuItemClick = { navController.popBackStack() })
         LazyRow(content = {
             items(actionItemList.size) {
                 if (it == 0) {
