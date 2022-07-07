@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.example.flux_compose.R
 import com.example.flux_compose.composables.CustomAppBar
 import com.example.flux_compose.composables.EntryListItem
+import com.example.flux_compose.composables.LatestEntriesRow
 import com.example.flux_compose.main.Entry
 import java.time.LocalDate
 
@@ -69,32 +70,7 @@ fun HomeScreen() {
                 }
             })
             Box(Modifier.height(15.dp))
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Text(text = "Latest Entries", fontSize = 24.sp, fontWeight = FontWeight.Black)
-                Column(
-                    modifier = Modifier
-                        .size(32.dp)
-                        .clip(RoundedCornerShape(20))
-                        .background(MaterialTheme.colors.primaryVariant)
-                        .clickable {
-                            // TODO: x route
-                        },
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24),
-                        "",
-                        tint = Color.White
-                    )
-                }
-
-            }
+            LatestEntriesRow()
             Box(Modifier.height(15.dp))
             LazyColumn(content = {
                 items(entriesList.size) {

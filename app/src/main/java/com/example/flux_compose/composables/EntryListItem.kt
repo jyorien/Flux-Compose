@@ -25,7 +25,9 @@ fun EntryListItem(entry: Entry) {
                 modifier = Modifier
                     .size(48.dp)
                     .clip(RoundedCornerShape(20))
-                    .background(color = MaterialTheme.colors.secondary)
+                    .background(color = MaterialTheme.colors.secondary),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
                 entry.icon()
             }
