@@ -14,8 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.flux_compose.main.add.ADD_SCREEN
-import com.example.flux_compose.main.add.AddScreen
+import com.example.flux_compose.main.add.*
 import com.example.flux_compose.main.bottom_nav.*
 import com.example.flux_compose.main.home.HOME_SCREEN
 import com.example.flux_compose.main.home.HomeScreen
@@ -42,12 +41,14 @@ fun MainScreen() {
             }
         }
     }) {
-        NavHost(navController = navController, startDestination = HOME_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
+        NavHost(navController = navController, startDestination = ADD_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
             composable(HOME_SCREEN) { HomeScreen() }
             composable(STATS_SCREEN) { HomeScreen() }
-            composable(ADD_SCREEN) { AddScreen() }
+            composable(ADD_SCREEN) { AddScreen(navController) }
             composable(NEWS_SCREEN) { HomeScreen() }
             composable(SETTINGS_SCREEN) { HomeScreen() }
+            composable(ADD_INCOME_SCREEN) { AddItemScreen() }
+            composable(ADD_EXPENSE_SCREEN) { AddItemScreen() }
         }
     }
 }
