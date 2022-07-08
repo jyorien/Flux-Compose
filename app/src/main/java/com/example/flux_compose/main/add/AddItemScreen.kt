@@ -1,8 +1,9 @@
 package com.example.flux_compose.main.add
 
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,7 +12,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Call
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,10 +29,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.flux_compose.R
 import com.example.flux_compose.composables.CustomAppBar
+import com.example.flux_compose.composables.CustomCalendar
 import com.example.flux_compose.composables.FullWidthButton
 import com.example.flux_compose.composables.FullWidthTextField
 import com.example.flux_compose.main.MainViewModel
+import com.example.flux_compose.utils.getDaysOfCurrentWeek
+import java.time.LocalDate
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AddItemScreen(viewModel: MainViewModel, navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -46,19 +50,26 @@ fun AddItemScreen(viewModel: MainViewModel, navController: NavController) {
             width = 2f,
             pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
         )
-        Column(modifier = Modifier.padding(horizontal = 24.dp)) {
-            CustomAppBar(screenName = "Add ${data.title}", menuIcon = R.drawable.ic_baseline_keyboard_backspace_24, onMenuItemClick = {navController.popBackStack()})
+        Column(modifier = Modifier
+            .padding(start = 24.dp, end = 24.dp, bottom = 24.dp)
+            .verticalScroll(rememberScrollState())) {
+            CustomAppBar(
+                screenName = "Add ${data.title}",
+                menuIcon = R.drawable.ic_baseline_keyboard_backspace_24,
+                onMenuItemClick = { navController.popBackStack() })
+            Box(Modifier.height(30.dp))
+            CustomCalendar(days = getDaysOfCurrentWeek(), currentDay = LocalDate.now().dayOfMonth.toString())
             Box(Modifier.height(30.dp))
             FullWidthTextField(state = titleController, label = "${data.title} Title")
             Box(Modifier.height(30.dp))
-            FullWidthTextField(state = amountController, label = "Amount")
+            FullWidthTextField(state = amountController, label = "Amount", trailingIcon =  { Icon(painter = painterResource(id = R.drawable.ic_baseline_attach_money_24), contentDescription = "Dollar Sign", tint = MaterialTheme.colors.primary) })
             Box(Modifier.height(30.dp))
             Column(Modifier.padding(horizontal = 15.dp)) {
                 Text("${data.title} Category")
                 Box(modifier = Modifier.height(10.dp))
                 LazyRow(content = {
                     items(categories.size) {
-                        if (it == 0)  {
+                        if (it == 0) {
                             Box(
                                 Modifier
                                     .size(80.dp, 50.dp)
@@ -67,9 +78,17 @@ fun AddItemScreen(viewModel: MainViewModel, navController: NavController) {
                                 contentAlignment = Alignment.Center
                             ) {
                                 Canvas(modifier = Modifier.fillMaxSize()) {
-                                    drawRoundRect(color = Color.Gray, style = stroke, cornerRadius = CornerRadius(24f, 24f))
+                                    drawRoundRect(
+                                        color = Color.Gray,
+                                        style = stroke,
+                                        cornerRadius = CornerRadius(24f, 24f)
+                                    )
                                 }
-                                Icon(imageVector = Icons.Default.Add, contentDescription = "Add Button", tint = Color.Gray)
+                                Icon(
+                                    imageVector = Icons.Default.Add,
+                                    contentDescription = "Add Button",
+                                    tint = Color.Gray
+                                )
                             }
                             return@items
                         }
@@ -85,12 +104,16 @@ fun AddItemScreen(viewModel: MainViewModel, navController: NavController) {
                     Box(modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp)
-                        .clickable { }, contentAlignment = Alignment.Center) {
+                        .clickable { }, contentAlignment = Alignment.Center
+                    ) {
                         Canvas(modifier = Modifier.fillMaxSize()) {
-                            drawRoundRect(color = Color.Gray, style = stroke , cornerRadius = CornerRadius(24f, 24f))
+                            drawRoundRect(color = Color.Gray, style = stroke, cornerRadius = CornerRadius(24f, 24f))
                         }
                         Row {
-                            Icon(painter = painterResource(id = R.drawable.ic_baseline_photo_camera_24), contentDescription = "")
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_baseline_photo_camera_24),
+                                contentDescription = ""
+                            )
                             Box(modifier = Modifier.width(10.dp))
                             Text("Add Photo")
                         }
