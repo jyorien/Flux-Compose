@@ -31,67 +31,71 @@ fun LoginScreen(navController: NavController) {
     val inputEmail = remember { mutableStateOf("") }
     val inputPassword = remember { mutableStateOf("") }
     Scaffold {
-        // Curved grey area on top
-
-        Column(modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Column {
+            // Curved grey area on top
             CurvedGreyBackground()
-            Text("Flux", fontWeight = FontWeight.Bold, fontSize = 36.sp)
-            Box(modifier = Modifier.height(30.dp))
-            FullWidthButton(onClick = { /*TODO: Google Login*/ }, color = Color.White) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Image(painter = painterResource(id = R.drawable.google), "Google Login", Modifier.size(24.dp))
-                    Box(modifier = Modifier.width(15.dp))
-                    Text("Login with Google", fontSize = 16.sp)
+            Column(modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text("Flux", fontWeight = FontWeight.Bold, fontSize = 36.sp)
+                Box(modifier = Modifier.height(30.dp))
+                FullWidthButton(onClick = { /*TODO: Google Login*/ }, color = Color.White) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Image(painter = painterResource(id = R.drawable.google), "Google Login", Modifier.size(24.dp))
+                        Box(modifier = Modifier.width(15.dp))
+                        Text("Login with Google", fontSize = 16.sp)
+                    }
                 }
-            }
-            Box(modifier = Modifier.height(15.dp))
-            FullWidthButton(onClick = { /*TODO: Apple Login*/ }, color = Color.Black) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Image(painter = painterResource(id = R.drawable.img), "Apple Login", Modifier.size(24.dp))
-                    Box(modifier = Modifier.width(15.dp))
-                    Text("Sign in with Apple", fontSize = 16.sp, color = Color.White)
+                Box(modifier = Modifier.height(15.dp))
+                FullWidthButton(onClick = { /*TODO: Apple Login*/ }, color = Color.Black) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Image(painter = painterResource(id = R.drawable.img), "Apple Login", Modifier.size(24.dp))
+                        Box(modifier = Modifier.width(15.dp))
+                        Text("Sign in with Apple", fontSize = 16.sp, color = Color.White)
+                    }
                 }
-            }
-            Box(Modifier.height(20.dp))
-            Text("OR")
-            Box(modifier = Modifier.height(20.dp))
-            FullWidthTextField(inputEmail, "Email")
-            Box(modifier = Modifier.height(20.dp))
-            FullWidthTextField(
-                inputPassword,
-                "Password",
-                trailingIcon = {
-                    Icon(
-                        painterResource(id = R.drawable.ic_baseline_remove_red_eye_24),
-                        "Show Password",
-                        modifier = Modifier
-                            .padding(end = 35.dp)
-                            .size(20.dp)
-                    )
-                },
-                keyboardType = KeyboardType.Password
-            )
-            Box(modifier = Modifier.height(20.dp))
-            FullWidthButton(onClick = { navController.navigate(MAIN_SCREEN) }) {
-                Row {
-                    Text("Sign In")
-                    Icon(
-                        painterResource(id = R.drawable.ic_baseline_keyboard_arrow_right_24),
-                        "Continue Button",
-                        Modifier.size(20.dp)
-                    )
+                Box(Modifier.height(20.dp))
+                Text("OR")
+                Box(modifier = Modifier.height(20.dp))
+                FullWidthTextField(inputEmail, "Email")
+                Box(modifier = Modifier.height(20.dp))
+                FullWidthTextField(
+                    inputPassword,
+                    "Password",
+                    trailingIcon = {
+                        Icon(
+                            painterResource(id = R.drawable.ic_baseline_remove_red_eye_24),
+                            "Show Password",
+                            modifier = Modifier
+                                .padding(end = 35.dp)
+                                .size(20.dp)
+                        )
+                    },
+                    keyboardType = KeyboardType.Password
+                )
+                Box(modifier = Modifier.height(20.dp))
+                FullWidthButton(onClick = { navController.navigate(MAIN_SCREEN) }) {
+                    Row {
+                        Text("Sign In")
+                        Icon(
+                            painterResource(id = R.drawable.ic_baseline_keyboard_arrow_right_24),
+                            "Continue Button",
+                            Modifier.size(20.dp)
+                        )
+                    }
                 }
-            }
-            TextButton(onClick = { /*TODO*/ }) {
-                Text("Forgot password?", color = Color(0x8D2E2E2E))
-            }
-            TextButton(onClick = { /*TODO*/ }) {
-                Row {
-                    Text("Don't have any account? ", color = Color(0x8D2E2E2E))
-                    Text("Sign up",  color = Color(0xFF000000))
+                TextButton(onClick = { /*TODO*/ }) {
+                    Text("Forgot password?", color = Color(0x8D2E2E2E))
+                }
+                TextButton(onClick = { /*TODO*/ }) {
+                    Row {
+                        Text("Don't have any account? ", color = Color(0x8D2E2E2E))
+                        Text("Sign up",  color = Color(0xFF000000))
+                    }
                 }
             }
         }
+
     }
 }
 

@@ -32,7 +32,6 @@ fun FullWidthTextField(state: MutableState<String>, label: String, trailingIcon:
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp)
             .shadow(elevation = 2.dp, shape = RoundedCornerShape(25)),
         shape = RoundedCornerShape(25),
         value = state.value,
