@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             FluxComposeTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = ONBOARDING_SCREEN) {
+                NavHost(navController = navController, startDestination = MAIN_SCREEN) {
                     composable(ONBOARDING_SCREEN) { OnboardingScreen(navController) }
                     composable(LOGIN_SCREEN) { LoginScreen(navController) }
                     composable(MAIN_SCREEN) { MainScreen() }

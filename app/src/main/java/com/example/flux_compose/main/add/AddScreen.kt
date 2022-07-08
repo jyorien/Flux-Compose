@@ -103,7 +103,7 @@ fun AddScreen(navController: NavController) {
             }
         }, verticalAlignment = Alignment.CenterVertically)
         Box(Modifier.height(15.dp))
-        LatestEntriesRow()
+        LatestEntriesRow(navController)
         Box(Modifier.height(15.dp))
         LazyColumn(content = {
             items(entries.size) {

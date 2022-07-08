@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.flux_compose.R
 import com.example.flux_compose.composables.CustomAppBar
 import com.example.flux_compose.composables.EntryListItem
@@ -34,7 +35,7 @@ const val HOME_SCREEN = "home_screen"
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     val summaryItemList = listOf(
         SummaryItem(index = 0, title = "Total Salary", amount = 1800f),
         SummaryItem(index = 1, title = "Total Expense", 1800.5f),
@@ -70,7 +71,7 @@ fun HomeScreen() {
                 }
             })
             Box(Modifier.height(15.dp))
-            LatestEntriesRow()
+            LatestEntriesRow(navController)
             Box(Modifier.height(15.dp))
             LazyColumn(content = {
                 items(entriesList.size) {

@@ -19,6 +19,8 @@ import com.example.flux_compose.main.add.*
 import com.example.flux_compose.main.bottom_nav.*
 import com.example.flux_compose.main.home.HOME_SCREEN
 import com.example.flux_compose.main.home.HomeScreen
+import com.example.flux_compose.main.latest_entries.LATEST_ENTRIES_SCREEN
+import com.example.flux_compose.main.latest_entries.LatestEntriesScreen
 
 const val MAIN_SCREEN = "main_screen"
 @RequiresApi(Build.VERSION_CODES.O)
@@ -43,14 +45,15 @@ fun MainScreen() {
         }
     }) {
         val viewModel: MainViewModel = viewModel()
-        NavHost(navController = navController, startDestination = ADD_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
-            composable(HOME_SCREEN) { HomeScreen() }
-            composable(STATS_SCREEN) { HomeScreen() }
+        NavHost(navController = navController, startDestination = HOME_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
+            composable(HOME_SCREEN) { HomeScreen(navController) }
+            composable(STATS_SCREEN) { HomeScreen(navController) }
             composable(ADD_SCREEN) { AddScreen(navController) }
-            composable(NEWS_SCREEN) { HomeScreen() }
-            composable(SETTINGS_SCREEN) { HomeScreen() }
+            composable(NEWS_SCREEN) { HomeScreen(navController) }
+            composable(SETTINGS_SCREEN) { HomeScreen(navController) }
             composable(ADD_INCOME_SCREEN) { AddItemScreen(viewModel, navController) }
             composable(ADD_EXPENSE_SCREEN) { AddItemScreen(viewModel, navController) }
+            composable(LATEST_ENTRIES_SCREEN) { LatestEntriesScreen(navController) }
         }
     }
 }

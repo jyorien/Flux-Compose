@@ -16,10 +16,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.flux_compose.R
+import com.example.flux_compose.main.latest_entries.LATEST_ENTRIES_SCREEN
 
 @Composable
-fun LatestEntriesRow() {
+fun LatestEntriesRow(navController: NavController) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -33,7 +35,7 @@ fun LatestEntriesRow() {
                 .clip(RoundedCornerShape(20))
                 .background(MaterialTheme.colors.primaryVariant)
                 .clickable {
-                    // TODO: x route
+                    navController.navigate(LATEST_ENTRIES_SCREEN)
                 },
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
