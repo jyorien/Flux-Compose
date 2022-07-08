@@ -19,6 +19,8 @@ import com.example.flux_compose.main.add.*
 import com.example.flux_compose.main.bottom_nav.*
 import com.example.flux_compose.main.home.HOME_SCREEN
 import com.example.flux_compose.main.home.HomeScreen
+import com.example.flux_compose.main.home.add_goal.ADD_GOAL_SCREEN
+import com.example.flux_compose.main.home.add_goal.AddGoalScreen
 import com.example.flux_compose.main.latest_entries.LATEST_ENTRIES_SCREEN
 import com.example.flux_compose.main.latest_entries.LatestEntriesScreen
 
@@ -54,6 +56,7 @@ fun MainScreen() {
             composable(ADD_INCOME_SCREEN) { AddItemScreen(viewModel, navController) }
             composable(ADD_EXPENSE_SCREEN) { AddItemScreen(viewModel, navController) }
             composable(LATEST_ENTRIES_SCREEN) { LatestEntriesScreen(navController) }
+            composable(ADD_GOAL_SCREEN) { AddGoalScreen(navController) }
         }
     }
 }

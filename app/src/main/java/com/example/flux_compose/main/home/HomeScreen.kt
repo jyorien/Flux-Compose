@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,6 +30,8 @@ import com.example.flux_compose.composables.CustomAppBar
 import com.example.flux_compose.composables.EntryListItem
 import com.example.flux_compose.composables.LatestEntriesRow
 import com.example.flux_compose.main.Entry
+import com.example.flux_compose.main.home.drawer.Drawer
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 
 const val HOME_SCREEN = "home_screen"
@@ -55,8 +58,14 @@ fun HomeScreen(navController: NavController) {
             )
         })
     )
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
+    val openDrawer = { scope.launch {  drawerState.open() }}
+    ModalDrawer(drawerContent = {
+        Drawer(navController = navController)
+    }, drawerState = drawerState, gesturesEnabled = drawerState.isOpen) {
         Column(modifier = Modifier.padding(horizontal = 24.dp)) {
-            CustomAppBar()
+            CustomAppBar(onMenuItemClick = { openDrawer() })
             Text("Overview", fontWeight = FontWeight.Bold, fontSize = 24.sp)
             Box(modifier = Modifier.height(15.dp))
             LazyRow(content = {
@@ -78,8 +87,9 @@ fun HomeScreen(navController: NavController) {
                     EntryListItem(entry = entriesList[it])
                 }
             })
-
         }
+    }
+
 
 }
 
