@@ -32,6 +32,7 @@ fun CustomCalendar(days: List<String>, currentDay: String) {
             .shadow(elevation = 2.dp, shape = RoundedCornerShape(10))
             .clip(RoundedCornerShape(10))
             .background(color = Color.White)
+            .padding(vertical = 10.dp)
             .height(100.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
