@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.example.flux_compose.R
 
 @Composable
-fun CustomCalendar(days: List<String>, currentDay: String) {
+fun CustomCalendar(days: List<String>, currentDay: String, month: String, year: String) {
     val daysOfWeek = listOf("S", "M", "T", "W", "T", "F", "S")
     Column(
         modifier = Modifier
@@ -40,7 +40,7 @@ fun CustomCalendar(days: List<String>, currentDay: String) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(painter = painterResource(id = R.drawable.ic_baseline_calendar_month_24), contentDescription = "Calendar Icon", tint = MaterialTheme.colors.primary)
             Box(modifier = Modifier.width(10.dp))
-            Text("July 2020", color = MaterialTheme.colors.primary)
+            Text("$month $year", color = MaterialTheme.colors.primary)
         }
         Box(modifier = Modifier.height(10.dp))
         Row(horizontalArrangement = Arrangement.SpaceEvenly,

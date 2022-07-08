@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -44,6 +45,11 @@ fun AddItemScreen(viewModel: MainViewModel, navController: NavController) {
     val addScreenData: AddScreenData? = viewModel.addScreenDataMap[currentRoute]
     val titleController = remember { mutableStateOf("") }
     val amountController = remember { mutableStateOf("") }
+    val date = LocalDate.now()
+    val dayOfMonth = date.dayOfMonth.toString()
+    var month = date.month.toString().lowercase()
+    month = month.replace(month[0], month[0]-32)
+    val year = date.year.toString()
     addScreenData?.let { data ->
         val categories = data.categories
         val stroke = Stroke(
@@ -58,7 +64,7 @@ fun AddItemScreen(viewModel: MainViewModel, navController: NavController) {
                 menuIcon = R.drawable.ic_baseline_keyboard_backspace_24,
                 onMenuItemClick = { navController.popBackStack() })
             Box(Modifier.height(30.dp))
-            CustomCalendar(days = getDaysOfCurrentWeek(), currentDay = LocalDate.now().dayOfMonth.toString())
+            CustomCalendar(days = getDaysOfCurrentWeek(), currentDay = dayOfMonth, month = month, year = year)
             Box(Modifier.height(30.dp))
             FullWidthTextField(state = titleController, label = "${data.title} Title")
             Box(Modifier.height(30.dp))
