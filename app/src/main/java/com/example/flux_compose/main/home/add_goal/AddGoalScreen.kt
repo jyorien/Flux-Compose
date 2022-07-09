@@ -1,5 +1,9 @@
 package com.example.flux_compose.main.home.add_goal
 
+import android.app.DatePickerDialog
+import android.icu.util.Calendar
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
@@ -14,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -25,6 +30,7 @@ import com.example.flux_compose.main.home.drawer.DrawerScreens
 
 const val ADD_GOAL_SCREEN = "ADD_GOAL_SCREEN"
 
+@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun AddGoalScreen(navController: NavController) {
     val goalTitle = remember { mutableStateOf("") }
@@ -33,6 +39,15 @@ fun AddGoalScreen(navController: NavController) {
     val deadline = remember { mutableStateOf("") }
     val contributionTypes = listOf("A", "B", "C")
     val isExpanded = remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+    val datePickerDialog = DatePickerDialog(context, { _, y, m, d ->
+        deadline.value = "$d/$m/$y"
+
+    }, year, month, dayOfMonth)
     Column(
         modifier = Modifier
             .padding(horizontal = 24.dp)
@@ -73,7 +88,9 @@ fun AddGoalScreen(navController: NavController) {
                     }
                 }
             }
-            FullWidthTextField(state = deadline, label = "Deadline")
+            FullWidthTextField(state = deadline, label = "Deadline", isEnabled = false, modifier = Modifier.clickable {
+                datePickerDialog.show()
+            })
         }
         Box(modifier = Modifier.height(60.dp))
         FullWidthButton(onClick = { /*TODO*/ }) {
