@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.flux_compose.R
@@ -62,6 +63,7 @@ fun AddGoalScreen(navController: NavController) {
             FullWidthTextField(
                 state = amount,
                 label = "Amount",
+                keyboardType = KeyboardType.Number,
                 trailingIcon = { Icon(painterResource(id = R.drawable.ic_baseline_attach_money_24), "") })
             Column {
                 FullWidthTextField(
@@ -88,7 +90,7 @@ fun AddGoalScreen(navController: NavController) {
                     }
                 }
             }
-            FullWidthTextField(state = deadline, label = "Deadline", isEnabled = false, modifier = Modifier.clickable {
+            FullWidthTextField(state = deadline, label = "Deadline", trailingIcon = { Icon(painterResource(id = R.drawable.ic_baseline_calendar_month_24), "") }  ,isEnabled = false, modifier = Modifier.clickable {
                 datePickerDialog.show()
             })
         }
