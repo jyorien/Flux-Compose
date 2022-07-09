@@ -21,7 +21,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun FullWidthTextField(state: MutableState<String>, label: String, trailingIcon: (@Composable () -> Unit)? = null, keyboardType: KeyboardType = KeyboardType.Text) {
+fun FullWidthTextField(state: MutableState<String>, label: String,  modifier: Modifier = Modifier, trailingIcon: (@Composable () -> Unit)? = null, keyboardType: KeyboardType = KeyboardType.Text, isEnabled: Boolean = true) {
     TextField(
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = Color.White,
@@ -30,7 +30,8 @@ fun FullWidthTextField(state: MutableState<String>, label: String, trailingIcon:
             focusedIndicatorColor = MaterialTheme.colors.primary,
             unfocusedIndicatorColor = Color.Transparent
         ),
-        modifier = Modifier
+        enabled = isEnabled,
+        modifier = modifier
             .fillMaxWidth()
             .shadow(elevation = 2.dp, shape = RoundedCornerShape(25)),
         shape = RoundedCornerShape(25),
