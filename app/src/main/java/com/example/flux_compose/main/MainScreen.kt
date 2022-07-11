@@ -24,6 +24,8 @@ import com.example.flux_compose.main.home.HOME_SCREEN
 import com.example.flux_compose.main.home.HomeScreen
 import com.example.flux_compose.main.home.add_goal.ADD_GOAL_SCREEN
 import com.example.flux_compose.main.home.add_goal.AddGoalScreen
+import com.example.flux_compose.main.home.notifications.NOTIFICATION_SCREEN
+import com.example.flux_compose.main.home.notifications.NotificationScreen
 import com.example.flux_compose.main.latest_entries.LATEST_ENTRIES_SCREEN
 import com.example.flux_compose.main.latest_entries.LatestEntriesScreen
 import com.example.flux_compose.main.home.set_reminders.SET_REMINDER_SCREEN
@@ -88,6 +90,10 @@ fun MainScreen() {
             composable(SET_REMINDER_SCREEN) {
                 bottomBarState.value = false
                 SetReminderScreen(navController)
+            }
+            composable(NOTIFICATION_SCREEN) {
+                bottomBarState.value = false
+                NotificationScreen(navController)
             }
         }
     }
