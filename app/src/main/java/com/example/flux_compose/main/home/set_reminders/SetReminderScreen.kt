@@ -1,4 +1,4 @@
-package com.example.flux_compose.main.set_reminders
+package com.example.flux_compose.main.home.set_reminders
 
 import android.app.DatePickerDialog
 import androidx.compose.foundation.clickable
