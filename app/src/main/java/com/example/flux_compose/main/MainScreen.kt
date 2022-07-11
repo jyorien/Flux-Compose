@@ -30,6 +30,8 @@ import com.example.flux_compose.main.latest_entries.LATEST_ENTRIES_SCREEN
 import com.example.flux_compose.main.latest_entries.LatestEntriesScreen
 import com.example.flux_compose.main.home.set_reminders.SET_REMINDER_SCREEN
 import com.example.flux_compose.main.home.set_reminders.SetReminderScreen
+import com.example.flux_compose.main.home.total_expenses.TOTAL_EXPENSES_SCREEN
+import com.example.flux_compose.main.home.total_expenses.TotalExpensesScreen
 
 const val MAIN_SCREEN = "main_screen"
 @RequiresApi(Build.VERSION_CODES.O)
@@ -58,7 +60,7 @@ fun MainScreen() {
         }
     }) {
         val viewModel: MainViewModel = viewModel()
-        NavHost(navController = navController, startDestination = HOME_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
+        NavHost(navController = navController, startDestination = TOTAL_EXPENSES_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
             composable(HOME_SCREEN) {
                 bottomBarState.value = true
                 HomeScreen(navController)
@@ -84,6 +86,11 @@ fun MainScreen() {
             composable(LATEST_ENTRIES_SCREEN) {
                 bottomBarState.value = true
                 LatestEntriesScreen(navController) }
+            composable(TOTAL_EXPENSES_SCREEN) {
+                bottomBarState.value = true
+                TotalExpensesScreen(navController)
+            }
+            // nav drawer
             composable(ADD_GOAL_SCREEN) {
                 bottomBarState.value = false
                 AddGoalScreen(navController) }

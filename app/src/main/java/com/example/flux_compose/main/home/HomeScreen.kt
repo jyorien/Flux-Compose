@@ -31,6 +31,7 @@ import com.example.flux_compose.composables.EntryListItem
 import com.example.flux_compose.composables.LatestEntriesRow
 import com.example.flux_compose.main.Entry
 import com.example.flux_compose.main.home.drawer.Drawer
+import com.example.flux_compose.main.home.total_expenses.TOTAL_EXPENSES_SCREEN
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
@@ -41,7 +42,7 @@ const val HOME_SCREEN = "home_screen"
 fun HomeScreen(navController: NavController) {
     val summaryItemList = listOf(
         SummaryItem(index = 0, title = "Total Salary", amount = 1800f),
-        SummaryItem(index = 1, title = "Total Expense", 1800.5f),
+        SummaryItem(index = 1, title = "Total Expense", 1800.5f) { navController.navigate(TOTAL_EXPENSES_SCREEN) },
         SummaryItem(index = 1, title = "Monthly Expense", 1800.294f),
     )
     val actionItemList = listOf(
@@ -99,7 +100,7 @@ fun HomeSummaryCard(isEven: Boolean, summaryItem: SummaryItem) {
         elevation = 3.dp,
         shape = RoundedCornerShape(20.dp),
         backgroundColor = if (isEven) MaterialTheme.colors.primaryVariant else Color.White,
-        modifier = Modifier.padding(horizontal = 10.dp)
+        modifier = Modifier.padding(horizontal = 10.dp).clickable { summaryItem.onClick() }
     ) {
         Column(Modifier.padding(horizontal = 24.dp, vertical = 24.dp)) {
             Icon(
