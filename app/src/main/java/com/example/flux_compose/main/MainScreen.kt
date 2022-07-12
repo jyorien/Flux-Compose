@@ -60,7 +60,7 @@ fun MainScreen() {
         }
     }) {
         val viewModel: MainViewModel = viewModel()
-        NavHost(navController = navController, startDestination = TOTAL_EXPENSES_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
+        NavHost(navController = navController, startDestination = HOME_SCREEN, modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
             composable(HOME_SCREEN) {
                 bottomBarState.value = true
                 HomeScreen(navController)
@@ -87,7 +87,7 @@ fun MainScreen() {
                 bottomBarState.value = true
                 LatestEntriesScreen(navController) }
             composable(TOTAL_EXPENSES_SCREEN) {
-                bottomBarState.value = true
+                bottomBarState.value = false
                 TotalExpensesScreen(navController)
             }
             // nav drawer
