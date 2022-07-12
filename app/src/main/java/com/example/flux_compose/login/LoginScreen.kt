@@ -1,17 +1,16 @@
 package com.example.flux_compose.login
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -22,7 +21,6 @@ import com.example.flux_compose.R
 import com.example.flux_compose.composables.FullWidthButton
 import com.example.flux_compose.composables.FullWidthTextField
 import com.example.flux_compose.main.MAIN_SCREEN
-import com.example.flux_compose.main.home.HOME_SCREEN
 
 const val LOGIN_SCREEN = "login_screen"
 
@@ -31,9 +29,10 @@ fun LoginScreen(navController: NavController) {
     val inputEmail = remember { mutableStateOf("") }
     val inputPassword = remember { mutableStateOf("") }
     Scaffold {
-        Column {
+        Column(Modifier.fillMaxWidth()) {
             // Curved grey area on top
             CurvedGreyBackground()
+            Spacer(modifier = Modifier.height(10.dp))
             Column(modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -98,47 +97,46 @@ fun LoginScreen(navController: NavController) {
 
     }
 }
-
 @Composable
 fun CurvedGreyBackground() {
-    Box(
+    val secondary = MaterialTheme.colors.secondary
+    Canvas(
         modifier = Modifier
             .fillMaxWidth()
-            .height(150.dp)
+            .height(200.dp)
     ) {
-        Box(
-            modifier = Modifier
-                .height(100.dp)
-                .fillMaxWidth()
-                .background(MaterialTheme.colors.secondary)
-        )
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(top = 15.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colors.secondary)
-                        .fillMaxWidth(0.5f)
-                        .height(145.dp)
-                )
-            }
-            Box(
-                modifier = Modifier
-                    .padding(top = 35.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .background(Color.White)
-                        .fillMaxWidth()
-                        .height(150.dp)
-                )
+        val width = size.width
+        val height = size.height
+        val path = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(width, 0f)
+            lineTo(width, 500f)
+//            lineTo(width.times(0.75f), height.times(0.84f))
+            cubicTo(
+                width,
+                500f,
 
-            }
+                width.times(.75f),
+                height.times(.40f),
+
+                width.times(.50f),
+                height
+            )
+
+            cubicTo(
+                width.times(.50f),
+                height,
+
+                width.times(.25f),
+                height.times(1.40f),
+
+                0f,
+                height
+            )
+
+
+            close()
         }
+        drawPath(path = path, color = secondary)
     }
 }
