@@ -31,6 +31,8 @@ import com.example.flux_compose.composables.EntryListItem
 import com.example.flux_compose.composables.LatestEntriesRow
 import com.example.flux_compose.main.Entry
 import com.example.flux_compose.main.home.drawer.Drawer
+import com.example.flux_compose.main.home.reminders.VIEW_REMINDERS_SCREEN
+import com.example.flux_compose.main.home.savings.VIEW_SAVINGS_SCREEN
 import com.example.flux_compose.main.home.total_expenses.TOTAL_EXPENSES_SCREEN
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -46,8 +48,16 @@ fun HomeScreen(navController: NavController) {
         SummaryItem(index = 1, title = "Monthly Expense", 1800.294f),
     )
     val actionItemList = listOf(
-        ActionItem(icon = { Icon(Icons.Filled.Add, "Add") }, label = "Savings"),
-        ActionItem(icon = { Icon(Icons.Filled.Notifications, "Notifs") }, "Reminders")
+        ActionItem(icon = { Icon(Icons.Filled.Add, "Add") }, label = "Savings", onClick = {
+            navController.navigate(
+                VIEW_SAVINGS_SCREEN
+            )
+        }),
+        ActionItem(icon = { Icon(Icons.Filled.Notifications, "Notifs") }, "Reminders", onClick = {
+            navController.navigate(
+                VIEW_REMINDERS_SCREEN
+            )
+        })
     )
     val entriesList = listOf(
         Entry(name = "Food", date = LocalDate.now(), paymentMethod = "Google Pay", price = "$200", icon = {
@@ -61,7 +71,7 @@ fun HomeScreen(navController: NavController) {
     )
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
-    val openDrawer = { scope.launch {  drawerState.open() }}
+    val openDrawer = { scope.launch { drawerState.open() } }
     ModalDrawer(drawerContent = {
         Drawer(navController = navController)
     }, drawerState = drawerState, gesturesEnabled = drawerState.isOpen) {
@@ -100,7 +110,9 @@ fun HomeSummaryCard(isEven: Boolean, summaryItem: SummaryItem) {
         elevation = 3.dp,
         shape = RoundedCornerShape(20.dp),
         backgroundColor = if (isEven) MaterialTheme.colors.primaryVariant else Color.White,
-        modifier = Modifier.padding(horizontal = 10.dp).clickable { summaryItem.onClick() }
+        modifier = Modifier
+            .padding(horizontal = 10.dp)
+            .clickable { summaryItem.onClick() }
     ) {
         Column(Modifier.padding(horizontal = 24.dp, vertical = 24.dp)) {
             Icon(
@@ -126,7 +138,8 @@ fun ActionButtonItem(actionItem: ActionItem, isEven: Boolean) {
         modifier = Modifier
             .padding(horizontal = 10.dp)
             .width(140.dp)
-            .height(120.dp),
+            .height(120.dp)
+            .clickable { actionItem.onClick() },
         shape = RoundedCornerShape(10)
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
