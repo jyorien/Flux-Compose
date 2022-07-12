@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.painterResource
@@ -67,6 +68,7 @@ fun AddScreen(navController: NavController) {
             icon = { Icon(Icons.Filled.Home, "", tint = MaterialTheme.colors.primaryVariant) }),
 
         )
+    CurvedGreyBackground()
     Column(modifier = Modifier.padding(horizontal = 24.dp)) {
         CustomAppBar(
             screenName = "Add",
@@ -136,5 +138,48 @@ fun AddActionButtons(isEven: Boolean, addItem: AddActionItem, navController: Nav
             Box(modifier = Modifier.height(10.dp))
             Text(addItem.title)
         }
+    }
+}
+
+@Composable
+fun CurvedGreyBackground() {
+    val secondary = MaterialTheme.colors.secondary
+    Canvas(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(240.dp)
+    ) {
+        val width = size.width
+        val height = size.height
+        val path = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(width, 0f)
+            lineTo(width, 1000f)
+            cubicTo(
+                width,
+                height.times(1.1f),
+
+                width.times(.75f),
+                height.times(0.95f),
+
+                width.times(.50f),
+                height.times(1.1f)
+            )
+
+            cubicTo(
+                width.times(.50f),
+                height.times(1.1f),
+
+                width.times(.25f),
+                height.times(1.35f),
+
+                0f,
+                height.times(0.9f)
+            )
+
+
+            close()
+        }
+        drawPath(path = path, color = secondary)
     }
 }

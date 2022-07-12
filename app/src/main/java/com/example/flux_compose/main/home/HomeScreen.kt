@@ -2,6 +2,7 @@ package com.example.flux_compose.main.home
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,9 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -75,6 +78,7 @@ fun HomeScreen(navController: NavController) {
     ModalDrawer(drawerContent = {
         Drawer(navController = navController)
     }, drawerState = drawerState, gesturesEnabled = drawerState.isOpen) {
+        CurvedGreyBackground()
         Column(modifier = Modifier.padding(horizontal = 24.dp)) {
             CustomAppBar(onMenuItemClick = { openDrawer() })
             Text("Overview", fontWeight = FontWeight.Bold, fontSize = 24.sp)
@@ -155,5 +159,48 @@ fun ActionButtonItem(actionItem: ActionItem, isEven: Boolean) {
             }
             Text(actionItem.label, fontWeight = FontWeight.Black)
         }
+    }
+}
+
+@Composable
+fun CurvedGreyBackground() {
+    val secondary = MaterialTheme.colors.secondary
+    Canvas(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(370.dp)
+    ) {
+        val width = size.width
+        val height = size.height
+        val path = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(width, 0f)
+            lineTo(width, 1000f)
+            cubicTo(
+                width,
+                height.times(1.1f),
+
+                width.times(.75f),
+                height.times(0.9f),
+
+                width.times(.50f),
+                height
+            )
+
+            cubicTo(
+                width.times(.50f),
+                height,
+
+                width.times(.25f),
+                height.times(1.15f),
+
+                0f,
+                height.times(0.9f)
+            )
+
+
+            close()
+        }
+        drawPath(path = path, color = secondary)
     }
 }

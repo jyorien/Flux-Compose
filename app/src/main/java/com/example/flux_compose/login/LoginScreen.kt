@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -111,7 +112,6 @@ fun CurvedGreyBackground() {
             moveTo(0f, 0f)
             lineTo(width, 0f)
             lineTo(width, 500f)
-//            lineTo(width.times(0.75f), height.times(0.84f))
             cubicTo(
                 width,
                 500f,
