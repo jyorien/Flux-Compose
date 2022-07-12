@@ -82,10 +82,10 @@ fun MainScreen() {
                 bottomBarState.value = true
                 HomeScreen(navController) }
             composable(ADD_INCOME_SCREEN) {
-                bottomBarState.value = true
+                bottomBarState.value = false
                 AddItemScreen(viewModel, navController) }
             composable(ADD_EXPENSE_SCREEN) {
-                bottomBarState.value = true
+                bottomBarState.value = false
                 AddItemScreen(viewModel, navController) }
             composable(LATEST_ENTRIES_SCREEN) {
                 bottomBarState.value = true
